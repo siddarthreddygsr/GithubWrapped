@@ -3,10 +3,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 
-interface ContributionGraphProps {
-  username?: string;
-}
-
 const DAYS = ['Mon', 'Wed', 'Fri']
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
