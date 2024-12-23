@@ -47,26 +47,27 @@ const [, setIsLoading] = useState(true)
     fetchAccountStats();
   }, [username]);
 
-  const handleCaptureScreenshot = () => {
-    const statsComponent = document.querySelector('.stats-component');
+  // const handleCaptureScreenshot = () => {
+  //   const statsComponent = document.querySelector('.stats-component');
     
-    if (statsComponent) {
-      html2canvas(statsComponent as HTMLElement, {
-        // scale: 2, // Increases resolution
-        useCORS: true, // Handles cross-origin images
-        backgroundColor: '#000000' // Matches the component's background
-      }).then(canvas => {
-        // Convert canvas to image
-        const screenshot = canvas.toDataURL('image/png');
+  //   if (statsComponent) {
+  //     html2canvas(statsComponent as HTMLElement, {
+  //       // scale: 2, // Increases resolution
+  //       useCORS: true, // Handles cross-origin images
+  //       backgroundColor: '#000000' // Matches the component's background
+  //     }).then(canvas => {
+  //       // Convert canvas to image
+  //       const screenshot = canvas.toDataURL('image/png');
         
-        // Create downloadable link
-        const link = document.createElement('a');
-        link.download = `${params.username}_github_stats.png`;
-        link.href = screenshot;
-        link.click();
-      });
-    }
-  };
+  //       // Create downloadable link
+  //       const link = document.createElement('a');
+  //       link.download = `${params.username}_github_stats.png`;
+  //       link.href = screenshot;
+  //       link.click();
+  //     });
+  //   }
+  // };
+  
   const handleShareScreenshot = () => {
     const statsComponent = document.querySelector('.stats-component');
     if (statsComponent) {
