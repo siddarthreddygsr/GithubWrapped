@@ -12,6 +12,10 @@ body {
   font-family: var(--font-sans);
 }
 
+body > div:last-child > span + img {
+  display: inline !important;
+}
+
 ::selection {
   background: rgba(236, 72, 153, 0.3);
 }

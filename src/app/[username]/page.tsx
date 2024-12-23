@@ -4,6 +4,7 @@ import ContributionGraph from "@/components/ContributionGraph"
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import html2canvas from 'html2canvas';
+import { Share } from "lucide-react";
 
 const UserProfileRoute = ({ params }: { params: { username: string } }) => {
   interface Stats {
@@ -14,6 +15,9 @@ const UserProfileRoute = ({ params }: { params: { username: string } }) => {
     busiest_day: string;
     busiest_month_contributions: number;
     busiest_month: string;
+    adjective: string,
+    contribution_difference: number,
+    contribution_percentage: number
   }
   const username = params.username;
 const [, setIsLoading] = useState(true)
@@ -26,6 +30,9 @@ const [, setIsLoading] = useState(true)
     busiest_day: 'NA',
     busiest_month_contributions: 0,
     busiest_month: "NA",
+    adjective: "",
+    contribution_difference: 0,
+    contribution_percentage: 0.0
   });
 
   useEffect(() => {
@@ -46,27 +53,6 @@ const [, setIsLoading] = useState(true)
 
     fetchAccountStats();
   }, [username]);
-
-  // const handleCaptureScreenshot = () => {
-  //   const statsComponent = document.querySelector('.stats-component');
-    
-  //   if (statsComponent) {
-  //     html2canvas(statsComponent as HTMLElement, {
-  //       // scale: 2, // Increases resolution
-  //       useCORS: true, // Handles cross-origin images
-  //       backgroundColor: '#000000' // Matches the component's background
-  //     }).then(canvas => {
-  //       // Convert canvas to image
-  //       const screenshot = canvas.toDataURL('image/png');
-        
-  //       // Create downloadable link
-  //       const link = document.createElement('a');
-  //       link.download = `${params.username}_github_stats.png`;
-  //       link.href = screenshot;
-  //       link.click();
-  //     });
-  //   }
-  // };
   
   const handleShareScreenshot = () => {
     const statsComponent = document.querySelector('.stats-component');
@@ -137,6 +123,20 @@ const [, setIsLoading] = useState(true)
             </div>
           </button>
 
+          <button 
+            className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-600 p-4 sm:p-8 relative overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all md:hidden"
+            aria-label="Longest Streak: 21 consecutive days"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.8),rgba(0,0,0,0))]" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus:opacity-100 bg-white/10 transition-opacity" />
+            <div className="relative h-full flex flex-col">
+              <h2 className="text-base sm:text-xl font-medium mb-1 sm:mb-2">Create your recap</h2>
+              <div>
+                <p className="text-xs sm:text-sm opacity-80">at githubrecap.tech</p>
+              </div>
+            </div>
+          </button>
+
           <div className="col-span-2 sm:col-span-3 rounded-2xl sm:rounded-3xl bg-[#0D1117]">
             <ContributionGraph username={username} />
           </div>
@@ -189,17 +189,12 @@ const [, setIsLoading] = useState(true)
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.8),rgba(0,0,0,0))]" />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus:opacity-100 bg-white/10 transition-opacity" />
-            <div className="relative">
-              <h2 className="text-base sm:text-xl font-medium mb-3 sm:mb-4">Top Languages</h2>
-              <div className="grid grid-cols-2 gap-4 sm:gap-8">
-                <div>
-                  <div className="text-3xl sm:text-4xl font-bold mb-1">TypeScript</div>
-                  <p className="text-xs sm:text-sm opacity-80">60% of commits</p>
-                </div>
-                <div>
-                  <div className="text-3xl sm:text-4xl font-bold mb-1">Python</div>
-                  <p className="text-xs sm:text-sm opacity-80">25% of commits</p>
-                </div>
+            <div className="relative h-full flex flex-col">
+              <h2 className="text-base sm:text-xl font-medium mb-1 sm:mb-2">Your made</h2>
+              <div>
+                <div className="text-3xl sm:text-5xl font-bold mb-2">{accountStats.contribution_difference}</div>
+                <p className="text-sm sm:text-lg opacity-80">{accountStats.adjective} contributions than last year</p>
+                <p className="text-sm sm:text-lg opacity-80">That is {accountStats.contribution_percentage}% {accountStats.adjective}!</p>
               </div>
             </div>
           </button>
@@ -207,10 +202,9 @@ const [, setIsLoading] = useState(true)
       </div>
       <button 
         onClick={handleShareScreenshot}
-        // onClick={handleCaptureScreenshot}
         className="fixed bottom-4 right-4 bg-purple-600 text-white p-2 rounded-full z-50"
       >
-      Share
+      <Share />
     </button>
   </main>
   )
