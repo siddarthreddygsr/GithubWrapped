@@ -129,10 +129,10 @@ const [, setIsLoading] = useState(true)
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.8),rgba(0,0,0,0))]" />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus:opacity-100 bg-white/10 transition-opacity" />
-            <div className="relative h-full flex flex-col">
-              <h2 className="text-base sm:text-xl font-medium mb-1 sm:mb-2">Create your recap</h2>
+            <div className="relative h-full flex flex-col justify-center items-center">
+              <h2 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">Create your recap</h2>
               <div>
-                <p className="text-xs sm:text-sm opacity-80">at githubrecap.tech</p>
+                <p className="text-sm sm:text-sm opacity-80">at githubrecap.tech</p>
               </div>
             </div>
           </button>
@@ -177,7 +177,7 @@ const [, setIsLoading] = useState(true)
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.8),rgba(0,0,0,0))]" />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-focus:opacity-100 bg-white/10 transition-opacity" />
-            <div className="relative h-full flex flex-col">
+            <div className="relative h-full flex flex-col justify-center items-center">
               <h2 className="text-base sm:text-xl font-medium mb-1 sm:mb-2">Busiest Day</h2>
               <div className="text-3xl sm:text-4xl font-bold mb-1">{accountStats.busiest_day}</div>
             </div>
