@@ -7,8 +7,8 @@ const DAYS = ['Mon', 'Wed', 'Fri']
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 export default function ContributionGraph({ 
-  username 
-}: { username: string }) {
+  username = "siddarthreddygsr" 
+}: { username?: string }) {
   interface DayData {
     date: string;
     contributionCount: number;
@@ -59,19 +59,10 @@ export default function ContributionGraph({
   )
 
   return (
-    <div className="rounded-3xl bg-gradient-to-br from-emerald-900/20 to-teal-900/20 p-8 relative overflow-hidden">
+    <div className="rounded-3xl bg-gradient-to-br from-emerald-900/20 to-teal-900/20 p-8 relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.8),rgba(0,0,0,0))]" />
-      <div className="relative z-10">
+      <div className="relative z-10 overflow-x-auto">
         <h2 className="text-2xl font-bold mb-6">Contribution Graph</h2>
-        
-        <div className="flex">
-          <div className="w-8" />
-          <div className="flex flex-1 justify-between text-xs text-gray-400 mb-2">
-            {MONTHS.map(month => (
-              <div key={month}>{month}</div>
-            ))}
-          </div>
-        </div>
 
         <div className="flex">
           <div className="flex flex-col justify-between text-xs text-gray-400 mr-2">
@@ -81,6 +72,15 @@ export default function ContributionGraph({
           </div>
 
           <div className="flex-1">
+            <div className="flex">
+              <div className="w-8" />
+              <div className="flex flex-1 justify-between text-xs text-gray-400 mb-2">
+                {MONTHS.map(month => (
+                  <div key={month}>{month}</div>
+                ))}
+              </div>
+            </div>
+
             <div className="grid grid-flow-col gap-[2px]">
               {contributionData.map((week, weekIndex) => (
                 <div key={weekIndex} className="grid grid-rows-7 gap-[2px]">
