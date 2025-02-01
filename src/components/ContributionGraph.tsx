@@ -23,7 +23,7 @@ export default function ContributionGraph({
     const fetchContributionData = async () => {
       try {
         setIsLoading(true)
-        const response = await axios.get(`https://ghwrapped.thaara.live/contributions_graph`, {
+        const response = await axios.get(`https://githubwrapped-backend.onrender.com/contributions_graph`, {
           params: { username }
         });
         setContributionData(response.data);

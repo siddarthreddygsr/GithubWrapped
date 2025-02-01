@@ -39,7 +39,7 @@ const [, setIsLoading] = useState(true)
     const fetchAccountStats = async () => {
       try {
         setIsLoading(true)
-        const response = await axios.get(`https://ghwrapped.thaara.live/account_stats`, {
+        const response = await axios.get(`https://githubwrapped-backend.onrender.com/account_stats`, {
           params: { username }
         });
         setAccountStats(response.data);
